@@ -38,20 +38,6 @@ All tests are located in the `tests/` directory.
   - Interface filtering
   - Device enrichment and OUI vendor lookup
 
-### Running the Tests
-
-From the project root, run:
-
-```bash
-deno test --allow-net --allow-run --allow-sys --allow-read
-```
-
-Or use the Deno task:
-
-```bash
-deno task test
-```
-
 ### Adding New Tests
 
 - Place new test files in the `tests/` directory.
