@@ -52,6 +52,12 @@ deno install
 5. **Run the scanner:**  
 
 ```bash
+deno run --watch --v8-flags="--max-old-space-size=4096" --allow-net --allow-run --allow-sys --allow-read src/main.ts
+```
+
+Or, if you use Deno tasks:
+
+```bash
 deno task dev
 ```
 
