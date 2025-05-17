@@ -1,7 +1,7 @@
 /**
  * Represents a discovered network device.
  */
-interface NetworkDevice {
+export interface NetworkDevice {
   ip: string; // IPv4 address of the device
   mac: string; // MAC address of the device
   interface: string; // Network interface name
@@ -134,7 +134,7 @@ export class NetworkScanner {
    */
   private static async loadOuiDatabase(): Promise<Record<string, string>> {
     try {
-      const json = await Deno.readTextFile("./ouis.json");
+      const json = await Deno.readTextFile("./data/ouis.json");
       const ouiEntries = JSON.parse(json) as OuiEntry[];
       console.log(`[OUI] Loaded ${ouiEntries.length} entries from ouis.json`);
       return ouiEntries.reduce((acc, entry) => {
