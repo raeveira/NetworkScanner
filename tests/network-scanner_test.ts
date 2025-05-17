@@ -1,20 +1,30 @@
-// tests/network-scanner_test.ts
 import { assert, assertEquals } from "@std/assert";
-import { NetworkScanner, type NetworkDevice } from "@src/network-scanner.ts";
+import { type NetworkDevice, NetworkScanner } from "@src/network-scanner.ts";
+
+// Get first non-loopback IPv4 interface
+const interfaces = Deno.networkInterfaces().filter(
+  (iface) =>
+    iface.family === "IPv4" &&
+    !iface.address.startsWith("127.") &&
+    !iface.name.toLowerCase().includes("loopback"),
+);
+
+const ifaceName = interfaces.length > 0 ? interfaces[0].name : undefined;
 
 Deno.test("scan returns array", async () => {
-  const devices = await NetworkScanner.scan({ pingTimeout: 50 });
+  if (!ifaceName) return; // Skip test if no suitable interface found
+  const devices = await NetworkScanner.scan({
+    interfaceFilter: ifaceName,
+    pingTimeout: 50
+  });
   assert(Array.isArray(devices));
 });
 
 Deno.test("interface filtering", async () => {
-  const interfaces = Deno.networkInterfaces();
-  if (interfaces.length === 0) return;
-
-  const ifaceName = interfaces[0].name;
+  if (!ifaceName) return; // Skip test if no suitable interface found
   const devices = await NetworkScanner.scan({
     interfaceFilter: ifaceName,
-    pingTimeout: 50
+    pingTimeout: 50,
   });
 
   devices.forEach((device: NetworkDevice) => {
