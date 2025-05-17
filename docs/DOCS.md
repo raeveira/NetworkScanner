@@ -28,6 +28,38 @@
 
 ---
 
+## Testing
+
+All tests are located in the `tests/` directory.
+
+- **Unit and integration tests** are written using Deno’s standard test API.
+- Tests cover:
+  - Network scanning logic
+  - Interface filtering
+  - Device enrichment and OUI vendor lookup
+
+### Running the Tests
+
+From the project root, run:
+
+```bash
+deno test --allow-net --allow-run --allow-sys --allow-read
+```
+
+Or use the Deno task:
+
+```bash
+deno task test
+```
+
+### Adding New Tests
+
+- Place new test files in the `tests/` directory.
+- Name test files with the `_test.ts` suffix (e.g., `network-scanner_test.ts`).
+- See the existing test files for examples.
+
+---
+
 ## Documentation
 
 - **`network-scanner.ts`**  

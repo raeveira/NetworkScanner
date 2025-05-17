@@ -78,6 +78,22 @@ devices.forEach(device => {
 });
 ```
 
+---
+
+## Testing
+
+Automated tests are provided using Deno’s built-in test runner.
+
+To run all tests, use:
+```bash
+deno test --allow-read --allow-write --allow-net --allow-sys --allow-run
+
+```
+
+Or, if you use Deno tasks:
+```bash
+deno task test
+```
 
 ---
 
